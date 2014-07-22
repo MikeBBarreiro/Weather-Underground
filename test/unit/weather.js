@@ -27,10 +27,22 @@ describe('.low', function(){
     });
   });
 });
-/*
+
 describe('.avgHigh', function(){
   it('Should return the average high', function(done){
     Weather.avgHigh(70420, function(temp){
-      expect(temp).to.be.ok;
-      */
-      
+      expect(temp).to.be.within(-50, 150);
+      done();
+    });
+  });
+});
+
+describe('.avgLow', function(){
+  it('Should return the average low', function(done){
+    Weather.avgLow(70420, function(temp){
+      expect(temp).to.be.within(-50, 150);
+      done();
+    });
+  });
+});
+
