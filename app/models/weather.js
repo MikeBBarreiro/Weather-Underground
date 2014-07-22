@@ -1,3 +1,5 @@
+/*jshint camelcase:false */
+
 'use strict';
 
 var request = require('request');
@@ -97,6 +99,27 @@ Weather.deltas = function(zip, cb){
 
  cb(aDeltas);
 
+  });
+};
+
+Weather.moon = function(zip, cb){
+var url = 'http://api.wunderground.com/api/d8b5a108b79cf7eb/astronomy/q/' + zip + '.json';
+request(url, function(error, response, body){
+  body = JSON.parse(body);
+
+  var illum = parseInt(body.moon_phase.percentageilluminated);
+
+  if(illum >= 0 && illum <= 5){
+    cb('New Moon');
+  }else if(illum >= 6 && illum <= 44){
+    cb('Crescent Moon');
+  }else if(illum >= 45 && illum <= 55){
+    cb('Quarter Moon');
+  }else if(illum >= 56 && illum <= 94){
+    cb('Gibbous Moon');
+  }else{
+    cb('Full Moon');
+}
 });
 };
 
