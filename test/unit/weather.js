@@ -71,6 +71,15 @@ describe('Weather', function(){
       });
     });
   });
+  describe('.moon', function(){
+    it('Should give the alumination of the moon', function(done){
+     Weather.moon(70420, function(phase){
+       expect(phase).to.be.ok;
+       expect(phase).to.be.a('string');
+       done();
+      });
+    });
+  });
 });
 
 
